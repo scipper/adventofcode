@@ -11,7 +11,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "AdventOfCode\\": "src"
+      "AdventOfCode\\": "src/main/php"
     }
   },
   "require-dev": {
