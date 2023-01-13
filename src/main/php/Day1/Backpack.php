@@ -11,26 +11,36 @@ class Backpack
 
     public function __construct(string $caloriesList)
     {
-        $this->caloriesList = $caloriesList;
+        $this->caloriesList = str_replace(" ", "", $caloriesList);
     }
 
     public function getTotalCaloriesOfElfWithMostCalories(): int
     {
-        $inventories = [];
-        $removedSpaces = str_replace(" ", "", $this->caloriesList);
-        $inventoryStrings = explode("\n\n", $removedSpaces);
-        foreach ($inventoryStrings as $inventoryString) {
-            $lines = explode("\n", $inventoryString);
-            $inventories[] = $this->getSumOfAllLines($lines);
-        }
-        return max($inventories);
+        return max($this->sumUpAllCalories());
     }
 
-    /**
-     * @param $lines
-     * @return int
-     */
-    public function getSumOfAllLines($lines): int
+    private function sumUpAllCalories(): array
+    {
+        $sumOfCaloriesOfAllElves = [];
+        $inventories = $this->splitUpInventories($this->caloriesList);
+        foreach ($inventories as $inventory) {
+            $lines = $this->splitUpLines($inventory);
+            $sumOfCaloriesOfAllElves[] = $this->getSumOfCaloriesOfAllLines($lines);
+        }
+        return $sumOfCaloriesOfAllElves;
+    }
+
+    private function splitUpInventories($removedSpaces)
+    {
+        return explode("\n\n", $removedSpaces);
+    }
+
+    private function splitUpLines($inventory)
+    {
+        return explode("\n", $inventory);
+    }
+
+    private function getSumOfCaloriesOfAllLines($lines): int
     {
         $calories = 0;
         foreach ($lines as $line) {
