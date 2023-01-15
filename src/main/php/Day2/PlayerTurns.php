@@ -6,8 +6,8 @@ namespace AdventOfCode\Day2;
 class PlayerTurns
 {
 
-    public static $Rock = "X";
-    public static $Paper = "Y";
-    public static $Scissors = "Z";
+    public static string $Rock = "X";
+    public static string $Paper = "Y";
+    public static string $Scissors = "Z";
 
 }
