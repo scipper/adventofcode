@@ -14,11 +14,11 @@ class Day2Test extends TestCase
      */
     public function opponentWinsWithRockVsScissors()
     {
-        $turns = "
+        $strategy = "
         A Z
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(3, $game->getPointsForPlayer());
     }
@@ -28,11 +28,11 @@ class Day2Test extends TestCase
      */
     public function opponentWinsWithPaperVsRock()
     {
-        $turns = "
+        $strategy = "
         B X
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(1, $game->getPointsForPlayer());
     }
@@ -42,11 +42,11 @@ class Day2Test extends TestCase
      */
     public function opponentWinsWithScissorsVsPaper()
     {
-        $turns = "
+        $strategy = "
         C Y
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(2, $game->getPointsForPlayer());
     }
@@ -56,11 +56,11 @@ class Day2Test extends TestCase
      */
     public function playerWinsWithRockVsScissors()
     {
-        $turns = "
+        $strategy = "
         C X
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(7, $game->getPointsForPlayer());
     }
@@ -70,11 +70,11 @@ class Day2Test extends TestCase
      */
     public function playerWinsWithPaperVsRock()
     {
-        $turns = "
+        $strategy = "
         A Y
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(8, $game->getPointsForPlayer());
     }
@@ -84,11 +84,11 @@ class Day2Test extends TestCase
      */
     public function playerWinsWithScissorsVsPaper()
     {
-        $turns = "
+        $strategy = "
         B Z
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(9, $game->getPointsForPlayer());
     }
@@ -98,11 +98,11 @@ class Day2Test extends TestCase
      */
     public function drawOnRockVsRock()
     {
-        $turns = "
+        $strategy = "
         A X
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(4, $game->getPointsForPlayer());
     }
@@ -112,11 +112,11 @@ class Day2Test extends TestCase
      */
     public function drawOnPaperVsPaper()
     {
-        $turns = "
+        $strategy = "
         B Y
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(5, $game->getPointsForPlayer());
     }
@@ -126,11 +126,11 @@ class Day2Test extends TestCase
      */
     public function drawOnScissorsVsScissors()
     {
-        $turns = "
+        $strategy = "
         C Z
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(6, $game->getPointsForPlayer());
     }
@@ -140,12 +140,12 @@ class Day2Test extends TestCase
      */
     public function playerWinsTwoRoundsWithRock()
     {
-        $turns = "
+        $strategy = "
         C X
         C X
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(14, $game->getPointsForPlayer());
     }
@@ -155,12 +155,12 @@ class Day2Test extends TestCase
      */
     public function playerWinsTwoRoundsWithPaper()
     {
-        $turns = "
+        $strategy = "
         A Y
         A Y
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(16, $game->getPointsForPlayer());
     }
@@ -170,12 +170,12 @@ class Day2Test extends TestCase
      */
     public function playerWinsTwoRoundsWithScissors()
     {
-        $turns = "
+        $strategy = "
         B Z
         B Z
         ";
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(18, $game->getPointsForPlayer());
     }
@@ -189,10 +189,10 @@ class Day2Test extends TestCase
         $file = fopen($filename, "r");
 
         $filesize = filesize($filename);
-        $turns = fread($file, $filesize);
+        $strategy = fread($file, $filesize);
         fclose($file);
 
-        $game = new RockPaperScissorsGame($turns);
+        $game = new RockPaperScissorsGame($strategy);
 
         $this->assertEquals(11841, $game->getPointsForPlayer());
     }

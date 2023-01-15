@@ -7,9 +7,11 @@ namespace AdventOfCode\Day2;
 class RockPaperScissorsGame
 {
 
-    public function __construct(string $turns)
+    private string $strategy;
+
+    public function __construct(string $strategy)
     {
-        $this->turns = $turns;
+        $this->strategy = $strategy;
     }
 
     public function getPointsForPlayer(): int
@@ -19,7 +21,7 @@ class RockPaperScissorsGame
         foreach ($turns as $turn) {
             $trimmedTurn = trim($turn);
             if (strlen($trimmedTurn) === 3) {
-                [$opponent, $player] = explode(" ", $trimmedTurn);
+                list($opponent, $player) = $this->getOpponentAndPlayerTurn($trimmedTurn);
                 if ($player === "X") {
                     $playerPoints += 1;
                     if ($opponent === "A") {
@@ -54,6 +56,12 @@ class RockPaperScissorsGame
 
     private function splitUpTurns()
     {
-        return explode("\n", $this->turns);
+        return explode("\n", $this->strategy);
+    }
+
+    public function getOpponentAndPlayerTurn(string $trimmedTurn): array
+    {
+        [$opponent, $player] = explode(" ", $trimmedTurn);
+        return array($opponent, $player);
     }
 }
