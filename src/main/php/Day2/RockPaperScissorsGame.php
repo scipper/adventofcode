@@ -26,7 +26,7 @@ class RockPaperScissorsGame
     public function getPointsForPlayer(): int
     {
         $points = 0;
-        $lines = $this->splitUpLines();
+        $lines = $this->splitUpStrategyToLines();
         foreach ($lines as $line) {
             $turn = $this->getTurnFromLine($line);
             if ($this->isValidTurn($turn)) {
@@ -43,7 +43,7 @@ class RockPaperScissorsGame
         return $points;
     }
 
-    private function splitUpLines()
+    private function splitUpStrategyToLines()
     {
         return explode("\n", $this->strategy);
     }
