@@ -22,30 +22,30 @@ class RockPaperScissorsGame
             $trimmedTurn = trim($turn);
             if (strlen($trimmedTurn) === 3) {
                 list($opponent, $player) = $this->getOpponentAndPlayerTurn($trimmedTurn);
-                if ($player === "X") {
+                if ($player === PlayerTurns::$Rock) {
                     $playerPoints += 1;
-                    if ($opponent === "A") {
+                    if ($opponent === OpponentsTurn::$Rock) {
                         $playerPoints += 3;
                     }
-                    if ($opponent === "C") {
+                    if ($opponent === OpponentsTurn::$Scissors) {
                         $playerPoints += 6;
                     }
                 }
-                if ($player === "Y") {
+                if ($player === PlayerTurns::$Paper) {
                     $playerPoints += 2;
-                    if ($opponent === "A") {
+                    if ($opponent === OpponentsTurn::$Rock) {
                         $playerPoints += 6;
                     }
-                    if ($opponent === "B") {
+                    if ($opponent === OpponentsTurn::$Paper) {
                         $playerPoints += 3;
                     }
                 }
-                if ($player === "Z") {
+                if ($player === PlayerTurns::$Scissors) {
                     $playerPoints += 3;
-                    if ($opponent === "B") {
+                    if ($opponent === OpponentsTurn::$Paper) {
                         $playerPoints += 6;
                     }
-                    if ($opponent === "C") {
+                    if ($opponent === OpponentsTurn::$Scissors) {
                         $playerPoints += 3;
                     }
                 }
