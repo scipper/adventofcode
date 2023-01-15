@@ -12,12 +12,12 @@ class RockPaperScissorsGame
 {
 
     private string $strategy;
-    private HandShapeFactory $turnFactory;
+    private HandShapeFactory $handShapeFactory;
 
     public function __construct(string $strategy)
     {
         $this->strategy = $strategy;
-        $this->turnFactory = new HandShapeFactory();
+        $this->handShapeFactory = new HandShapeFactory();
     }
 
     /**
@@ -64,8 +64,8 @@ class RockPaperScissorsGame
     public function getOpponentAndPlayerHandShapes(string $encryptedInput): array
     {
         [$opponentInput, $playerInput] = explode(" ", $encryptedInput);
-        $opponentHandShape = $this->turnFactory->getHandShape($opponentInput);
-        $playerHandShape = $this->turnFactory->getHandShape($playerInput);
+        $opponentHandShape = $this->handShapeFactory->getHandShape($opponentInput);
+        $playerHandShape = $this->handShapeFactory->getHandShape($playerInput);
         return array($opponentHandShape, $playerHandShape);
     }
 }
