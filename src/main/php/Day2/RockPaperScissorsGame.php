@@ -4,64 +4,68 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Day2;
 
+use AdventOfCode\Day2\HandShapes\HandShapeFactory;
+use AdventOfCode\Day2\Input\InvalidInputException;
+use AdventOfCode\Day2\Points\Points;
+
 class RockPaperScissorsGame
 {
 
     private string $strategy;
+    private HandShapeFactory $turnFactory;
 
     public function __construct(string $strategy)
     {
         $this->strategy = $strategy;
+        $this->turnFactory = new HandShapeFactory();
     }
 
+    /**
+     * @throws InvalidInputException
+     */
     public function getPointsForPlayer(): int
     {
-        $playerPoints = 0;
-        $turns = $this->splitUpTurns();
-        foreach ($turns as $turn) {
-            $trimmedTurn = trim($turn);
-            if (strlen($trimmedTurn) === 3) {
-                list($opponent, $player) = $this->getOpponentAndPlayerTurn($trimmedTurn);
-                if ($player === PlayerTurns::$Rock) {
-                    $playerPoints += 1;
-                    if ($opponent === OpponentsTurn::$Rock) {
-                        $playerPoints += 3;
-                    }
-                    if ($opponent === OpponentsTurn::$Scissors) {
-                        $playerPoints += 6;
-                    }
+        $points = 0;
+        $lines = $this->splitUpLines();
+        foreach ($lines as $line) {
+            $turn = $this->getTurnFromLine($line);
+            if ($this->isValidTurn($turn)) {
+                list($opponentHandShape, $playerHandShape) = $this->getOpponentAndPlayerHandShapes($turn);
+                $points += $playerHandShape->getPoints();
+                if ($playerHandShape->isSameAs($opponentHandShape)) {
+                    $points += Points::$Draw;
                 }
-                if ($player === PlayerTurns::$Paper) {
-                    $playerPoints += 2;
-                    if ($opponent === OpponentsTurn::$Rock) {
-                        $playerPoints += 6;
-                    }
-                    if ($opponent === OpponentsTurn::$Paper) {
-                        $playerPoints += 3;
-                    }
-                }
-                if ($player === PlayerTurns::$Scissors) {
-                    $playerPoints += 3;
-                    if ($opponent === OpponentsTurn::$Paper) {
-                        $playerPoints += 6;
-                    }
-                    if ($opponent === OpponentsTurn::$Scissors) {
-                        $playerPoints += 3;
-                    }
+                if ($playerHandShape->beats($opponentHandShape)) {
+                    $points += Points::$Win;
                 }
             }
         }
-        return $playerPoints;
+        return $points;
     }
 
-    private function splitUpTurns()
+    private function splitUpLines()
     {
         return explode("\n", $this->strategy);
     }
 
-    public function getOpponentAndPlayerTurn(string $trimmedTurn): array
+    public function getTurnFromLine($line): string
     {
-        [$opponent, $player] = explode(" ", $trimmedTurn);
-        return array($opponent, $player);
+        return trim($line);
+    }
+
+    public function isValidTurn(string $trimmedTurn): bool
+    {
+        return strlen($trimmedTurn) === 3;
+    }
+
+    /**
+     * @throws InvalidInputException
+     */
+    public function getOpponentAndPlayerHandShapes(string $encryptedInput): array
+    {
+        [$opponentInput, $playerInput] = explode(" ", $encryptedInput);
+        $opponentHandShape = $this->turnFactory->getHandShape($opponentInput);
+        $playerHandShape = $this->turnFactory->getHandShape($playerInput);
+        return array($opponentHandShape, $playerHandShape);
     }
 }
