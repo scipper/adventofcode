@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\Day2\HandShapes;
+namespace AdventOfCode\Y2023\Day2\HandShapes;
 
-use AdventOfCode\Day2\Input\InvalidInputException;
+use AdventOfCode\Y2023\Day2\Input\InvalidInputException;
 
 class HandShapeFactory
 {

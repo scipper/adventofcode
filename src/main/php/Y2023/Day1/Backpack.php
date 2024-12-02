@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\Day1;
+namespace AdventOfCode\Y2023\Day1;
 
 class Backpack
 {

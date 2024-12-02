@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\Day1;
+namespace Y2023\Day1;
 
+use AdventOfCode\Y2023\Day1\Backpack;
 use PHPUnit\Framework\TestCase;
 
 class Day1Test extends TestCase
@@ -76,7 +77,7 @@ class Day1Test extends TestCase
      */
     public function getLargestInventory()
     {
-        $filename = "input.txt";
+        $filename = __DIR__ . "/input.txt";
         $file = fopen($filename, "r");
 
         $filesize = filesize($filename);

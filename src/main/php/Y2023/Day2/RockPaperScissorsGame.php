@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\Day2;
+namespace AdventOfCode\Y2023\Day2;
 
-use AdventOfCode\Day2\HandShapes\HandShapeFactory;
-use AdventOfCode\Day2\Input\InvalidInputException;
-use AdventOfCode\Day2\Points\Points;
+use AdventOfCode\Y2023\Day2\HandShapes\HandShapeFactory;
+use AdventOfCode\Y2023\Day2\Input\InvalidInputException;
+use AdventOfCode\Y2023\Day2\Points\Points;
 
 class RockPaperScissorsGame
 {
@@ -30,7 +30,7 @@ class RockPaperScissorsGame
         foreach ($lines as $line) {
             $turn = $this->getTurnFromLine($line);
             if ($this->isValidTurn($turn)) {
-                list($opponentHandShape, $playerHandShape) = $this->getOpponentAndPlayerHandShapes($turn);
+                [$opponentHandShape, $playerHandShape] = $this->getOpponentAndPlayerHandShapes($turn);
                 $points += $playerHandShape->getPoints();
                 if ($playerHandShape->isSameAs($opponentHandShape)) {
                     $points += Points::$Draw;

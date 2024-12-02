@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\Day2\HandShapes;
+namespace AdventOfCode\Y2023\Day2\HandShapes;
 
-class Scissors implements HandShape
+class Rock implements HandShape
 {
 
     public function getPoints(): int
     {
-        return 3;
+        return 1;
     }
 
     public function isSameAs(HandShape $handShape): bool
     {
-        return $handShape instanceof Scissors;
+        return $handShape instanceof Rock;
     }
 
     public function beats(HandShape $handShape): bool
     {
-        return $handShape instanceof Paper;
+        return $handShape instanceof Scissors;
     }
 }

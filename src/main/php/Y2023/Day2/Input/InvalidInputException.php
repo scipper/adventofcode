@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\Day2\Input;
+namespace AdventOfCode\Y2023\Day2\Input;
 
 use Exception;
 

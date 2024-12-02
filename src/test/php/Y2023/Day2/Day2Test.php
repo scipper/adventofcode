@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\Day2;
+namespace Y2023\Day2;
 
+use AdventOfCode\Y2023\Day2\RockPaperScissorsGame;
 use PHPUnit\Framework\TestCase;
 
 class Day2Test extends TestCase
@@ -185,7 +186,7 @@ class Day2Test extends TestCase
      */
     public function playCompleteGuide()
     {
-        $filename = "input.txt";
+        $filename = __DIR__ . "/input.txt";
         $file = fopen($filename, "r");
 
         $filesize = filesize($filename);
