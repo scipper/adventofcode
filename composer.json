@@ -14,6 +14,11 @@
       "AdventOfCode\\": "src/main/php"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "AdventOfCode\\": "src/test/php"
+    }
+  },
   "require-dev": {
     "phpunit/phpunit": "9.5.27"
   }
