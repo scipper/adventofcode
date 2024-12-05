@@ -43,7 +43,7 @@ class Day3Solution {
     }
 
     private function detectMulWithDos(): string {
-        return "/(mul\(\d{1,3},\d{1,3}\))|(don\'t\(\))|(do\(\))/"; // matches "mul(1-3 digits,1-3 digits)"
+        return "/(mul\(\d{1,3},\d{1,3}\))|(don\'t\(\))|(do\(\))/"; // matches "mul(1-3 digits,1-3 digits)" and "don't()" and "do()"
     }
 
     private function detectMul(): string {
