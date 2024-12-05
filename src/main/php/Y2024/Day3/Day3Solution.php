@@ -6,18 +6,44 @@ use Throwable;
 
 class Day3Solution {
 
-    public function multiply(string $input): int {
+    public function multiplyEnabled(string $input): int {
+        return $this->multiply($input, true);
+    }
+
+    public function multiplyAll(string $input): int {
+        return $this->multiply($input, false);
+    }
+
+    private function multiply(string $input, bool $respectDos): int {
         $sum = 0;
-        foreach ($this->getMuls($input) as $mul) {
-            $sum += $this->getResultOfMul($mul);
+        $enabled = true;
+        foreach ($this->getMuls($input, $respectDos) as $mul) {
+            if($mul === "don't()") {
+                $enabled = false;
+            }
+            if($mul === "do()") {
+                $enabled = true;
+            }
+            if($enabled) {
+                $sum += $this->getResultOfMul($mul);
+            }
         }
 
         return $sum;
     }
 
-    private function getMuls(string $input): array {
-        preg_match_all($this->detectMul(), $input, $matches);
+    private function getMuls(string $input, bool $respectDos): array {
+        if($respectDos) {
+            $detectMul = $this->detectMulWithDos();
+        } else {
+            $detectMul = $this->detectMul();
+        }
+        preg_match_all($detectMul, $input, $matches);
         return $matches[0];
+    }
+
+    private function detectMulWithDos(): string {
+        return "/(mul\(\d{1,3},\d{1,3}\))|(don\'t\(\))|(do\(\))/"; // matches "mul(1-3 digits,1-3 digits)"
     }
 
     private function detectMul(): string {
