@@ -9,7 +9,7 @@ class Day3Solution {
     public function multiply(string $input): int {
         $sum = 0;
         foreach ($this->getMuls($input) as $mul) {
-            $sum += $this->getResultOfMul($mul, $sum);
+            $sum += $this->getResultOfMul($mul);
         }
 
         return $sum;
